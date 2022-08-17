@@ -1,10 +1,15 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
   mode:"development",
   entry:"./src/app.js",
   plugins:[
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin(),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim:true, // 快速帮我们启用workservice服务
+      skipWaiting:true, // 跳出等待
+    })
   ],
   devServer:{
     devMiddleware:{
